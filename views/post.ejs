@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>home page</title>
+    <style>
+        .text{
+            width: 50%;
+            height: 20vh;
+            margin-top: 200px;
+            margin-left: 50px;
+            border-radius: 50px;
+        }
+        .tweet-div{
+            border-radius: 10px;
+        }
+        .like-button{
+            width: 60px;
+            height: 30px;
+            border-radius: 10px;
+            color: white;
+        }
+        .add-button{
+            width: 60px;
+            height: 30px;
+            border-radius: 10px;
+            color: white;
+
+        }
+
+    </style>
+ </head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-md bg-light">
+        <h5>TWITTER</h5>
+        <div class="col-12 col-sm-10"></div>
+        <a href="/logout"><button type="submit">LOGOUT</button></a>
+    </nav>
+    <div class="row">
+        <div class="col-6 mt-5">
+        
+            <%post1.forEach((x)=>{%>
+                <p class="h5 text-center">USER:<%=x.tuser%></p>
+                <div class="tweet-div border border-dark ml-5">
+                    <p class="h2 text-center"><%=x.message%></p>
+                    <span class="bold ml-3">liked by </span><%=x.like%>
+                    <form action="/post/like" method="post" class="ml-2">
+                        <input type="hidden" value="<%=x.tuser%>" name="tuser">
+                        <button type="submit" class="like-button bg-danger border"><%=x.like.length%> like</button>
+                    </form>
+                </div>
+            <%})%>
+        </div>    
+        <div class="col-6">
+            <div class="mt-5">
+                <form action="/post" method="post">
+                    <input type="text"placeholder="Type Message..."class="text border border-dark" name="tweet">
+                    <button class="btn-primary add-button" type="submit" >add</button>
+                </form>
+            
+        </div>
+    </div>
+</body>
+</html>
